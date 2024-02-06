@@ -87,7 +87,7 @@ def compute_top_n_accuracy(truths, preds, n):
 if __name__ == '__main__':
 
     # change root and subset accordingly.
-    root = '/media/anudisk/github/WLASL'
+    root = '/content/WLASL'
     trained_on = 'asl100'
 
     checkpoint = 'ckpt.pth'
