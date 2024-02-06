@@ -28,7 +28,7 @@ def gen(entry_list):
             frame_start = instance['frame_start']
             frame_end = instance['frame_end']
 
-            save_to = os.path.join('/home/dxli/workspace/nslt/code/Pose-GCN/posegcn/features', vid)
+            save_to = os.path.join('/content/drive/MyDrive/Graduation_Project/wlasl-processed/videos', vid)
 
             if not os.path.exists(save_to):
                 os.mkdir(save_to)
@@ -39,7 +39,7 @@ def gen(entry_list):
                 ft_path = os.path.join(save_to, frame_id + '_ft.pt')
                 if not os.path.exists(ft_path):
                     try:
-                        pose_content = json.load(open(os.path.join('/home/dxli/workspace/nslt/data/pose/pose_per_individual_videos',
+                        pose_content = json.load(open(os.path.join('/content/WLASL/data/pose_per_individual_videos',
                                                                    vid, frame_id + '_keypoints.json')))["people"][0]
                     except IndexError:
                         continue
@@ -75,7 +75,7 @@ def gen(entry_list):
 
 
 body_pose_exclude = {9, 10, 11, 22, 23, 24, 12, 13, 14, 19, 20, 21}
-index_file_path = '/home/dxli/workspace/nslt/data/splits-with-dialect-annotated/asl2000.json'
+index_file_path = '/content/WLASL/data/splits/asl100.json'
 
 with open(index_file_path, 'r') as f:
     content = json.load(f)
