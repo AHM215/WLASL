@@ -32,5 +32,5 @@ class Config:
 
 
 if __name__ == '__main__':
-    config_path = '/home/dxli/workspace/nslt/code/VGG-GRU/configs/test.ini'
+    config_path = '/content/WLASL/code/TGCN/configs/asl100.ini'
     print(str(Config(config_path)))
