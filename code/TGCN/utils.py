@@ -122,10 +122,10 @@ def gather_last(batch_hidden_states, in_lengths):
 
 def plot_curves(A=None, B=None, C=None, D=None):
     if not A:
-        A = np.load('output/epoch_training_losses.npy')
-        B = np.load('output/epoch_training_scores.npy')
-        C = np.load('output/epoch_test_loss.npy')
-        D = np.load('output/epoch_test_score.npy')
+        A = np.load('/content/WLASL/output/epoch_training_losses.npy')
+        B = np.load('/content/WLASL/output/epoch_training_scores.npy')
+        C = np.load('/content/WLASL/output/epoch_test_loss.npy')
+        D = np.load('/content/WLASL/output/epoch_test_score.npy')
 
     epochs = A.shape[0]
     # plot
