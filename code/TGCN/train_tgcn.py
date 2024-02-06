@@ -87,10 +87,10 @@ def run(split_file, pose_data_root, configs, save_model_to=None):
         epoch_val_scores.append(val_score[0])
 
         # save all train test results
-        np.save('output/epoch_training_losses.npy', np.array(epoch_train_losses))
-        np.save('output/epoch_training_scores.npy', np.array(epoch_train_scores))
-        np.save('output/epoch_test_loss.npy', np.array(epoch_val_losses))
-        np.save('output/epoch_test_score.npy', np.array(epoch_val_scores))
+        np.save('/content/WLASL/output/epoch_training_losses.npy', np.array(epoch_train_losses))
+        np.save('/content/WLASL/output/epoch_training_scores.npy', np.array(epoch_train_scores))
+        np.save('/content/WLASL/output/epoch_test_loss.npy', np.array(epoch_val_losses))
+        np.save('/content/WLASL/output/epoch_test_score.npy', np.array(epoch_val_scores))
 
         if val_score[0] > best_test_acc:
             best_test_acc = val_score[0]
@@ -108,16 +108,24 @@ def run(split_file, pose_data_root, configs, save_model_to=None):
 
 
 if __name__ == "__main__":
-    root = '/media/anudisk/github/WLASL'
+    root = '/content/WLASL'
 
     subset = 'asl100'
+
+    log_dir = os.path.join(root, 'output')  # Define the directory for log files
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)  # Create the directory if it doesn't exist
+
 
     split_file = os.path.join(root, 'data/splits/{}.json'.format(subset))
     pose_data_root = os.path.join(root, 'data/pose_per_individual_videos')
     config_file = os.path.join(root, 'code/TGCN/configs/{}.ini'.format(subset))
     configs = Config(config_file)
 
-    logging.basicConfig(filename='output/{}.log'.format(os.path.basename(config_file)[:-4]), level=logging.DEBUG, filemode='w+')
+    # Set up logging
+    log_file = os.path.join(log_dir, '{}.log'.format(os.path.basename(config_file)[:-4]))
+    logging.basicConfig(filename=log_file, level=logging.DEBUG, filemode='w+')
+
 
     logging.info('Calling main.run()')
     run(split_file=split_file, configs=configs, pose_data_root=pose_data_root)
